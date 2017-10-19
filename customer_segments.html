@@ -20114,13 +20114,13 @@ JElSh4FJkiRJkjoMTJIkSZLUYWCSJEmSpI7/B/+dfciLMip2AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>回答:</strong><br>
-前两个总方差是0.4993+0.2259=0.7252
+前两个总方差是0.4993+0.2259=0.7252<br>
 第一个和第二个主成分分别表示了0.4993和0.2259.<br>
 前四个主成分总共表示了0.9279的方差.<br>
-第一个主成分Fresh,Frozen负相关,纸巾权重最大应该是咖啡店.<br>
-第二个主成分fresh,frozen,delicatessen权重比较大,特征之间大多是正相关,应该是一家超市.<br>
-第三主成分fresh,detergents_paper与Milk,Frozen,Delicatessen负相关,应该是一家普通零售店.<br>
-第四主成分frozen和detergents_paper与Milk和Grocery负相关,是一家出售新鲜食品杂物的零售店.</p>
+第一个主成分里Milk,Grocery,Detergents_Paper明显相关,纸巾权重最大应该是咖啡店.<br>
+第二个主成分fresh,frozen,delicatessen相关性最大,fresh,frozen和delicatessen权重比较大,特征之间均为负相关,应该是一家超市.<br>
+第三主成分fresh,detergents_paper与Frozen,Delicatessen相关性强并且是负相关,应该是一家普通食品零售店.<br>
+第四主成分最大正相关frozen和detergents_paper与fresh和delicatessen负相关,权重最大的是frozen因此是一家出售食品的便利零售店.</p>
 
 </div>
 </div>
@@ -20136,7 +20136,7 @@ JElSh4FJkiRJkjoMTJIkSZLUYWCSJEmSpI7/B/+dfciLMip2AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># 展示经过PCA转换的sample log-data</span>
@@ -20156,67 +20156,44 @@ JElSh4FJkiRJkjoMTJIkSZLUYWCSJEmSpI7/B/+dfciLMip2AAAAAElFTkSuQmCC
 <div class="prompt"></div>
 
 
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-65-7a56523e166e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-red-intense-fg ansi-bold"># 展示经过PCA转换的sample log-data</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 2</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>display<span class="ansi-yellow-intense-fg ansi-bold">(</span>pd<span class="ansi-yellow-intense-fg ansi-bold">.</span>DataFrame<span class="ansi-yellow-intense-fg ansi-bold">(</span>np<span class="ansi-yellow-intense-fg ansi-bold">.</span>round<span class="ansi-yellow-intense-fg ansi-bold">(</span>pca_samples<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">4</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> columns <span class="ansi-yellow-intense-fg ansi-bold">=</span> pca_results<span class="ansi-yellow-intense-fg ansi-bold">.</span>index<span class="ansi-yellow-intense-fg ansi-bold">.</span>values<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
+<span class="ansi-green-intense-fg ansi-bold">C:\ProgramData\Anaconda2\lib\site-packages\pandas\core\frame.pyc</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-intense-fg ansi-bold">(self, data, index, columns, dtype, copy)</span>
+<span class="ansi-green-fg">    304</span>             <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">    305</span>                 mgr = self._init_ndarray(data, index, columns, dtype=dtype,
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 306</span><span class="ansi-yellow-intense-fg ansi-bold">                                          copy=copy)
+</span><span class="ansi-green-fg">    307</span>         <span class="ansi-green-intense-fg ansi-bold">elif</span> isinstance<span class="ansi-yellow-intense-fg ansi-bold">(</span>data<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span>list<span class="ansi-yellow-intense-fg ansi-bold">,</span> types<span class="ansi-yellow-intense-fg ansi-bold">.</span>GeneratorType<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">    308</span>             <span class="ansi-green-intense-fg ansi-bold">if</span> isinstance<span class="ansi-yellow-intense-fg ansi-bold">(</span>data<span class="ansi-yellow-intense-fg ansi-bold">,</span> types<span class="ansi-yellow-intense-fg ansi-bold">.</span>GeneratorType<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
 
-    .dataframe thead th {
-        text-align: left;
-    }
+<span class="ansi-green-intense-fg ansi-bold">C:\ProgramData\Anaconda2\lib\site-packages\pandas\core\frame.pyc</span> in <span class="ansi-cyan-fg">_init_ndarray</span><span class="ansi-blue-intense-fg ansi-bold">(self, values, index, columns, dtype, copy)</span>
+<span class="ansi-green-fg">    481</span>             values <span class="ansi-yellow-intense-fg ansi-bold">=</span> maybe_infer_to_datetimelike<span class="ansi-yellow-intense-fg ansi-bold">(</span>values<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    482</span> 
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 483</span><span class="ansi-yellow-intense-fg ansi-bold">         </span><span class="ansi-green-intense-fg ansi-bold">return</span> create_block_manager_from_blocks<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>values<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span>columns<span class="ansi-yellow-intense-fg ansi-bold">,</span> index<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    484</span> 
+<span class="ansi-green-fg">    485</span>     <span class="ansi-yellow-intense-fg ansi-bold">@</span>property
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Dimension 1</th>
-      <th>Dimension 2</th>
-      <th>Dimension 3</th>
-      <th>Dimension 4</th>
-      <th>Dimension 5</th>
-      <th>Dimension 6</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>-4.3474</td>
-      <td>-2.7451</td>
-      <td>-1.0220</td>
-      <td>0.6346</td>
-      <td>0.5311</td>
-      <td>0.2344</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>-2.8855</td>
-      <td>0.5387</td>
-      <td>2.1370</td>
-      <td>0.6219</td>
-      <td>0.1172</td>
-      <td>0.3488</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2.6362</td>
-      <td>-2.3118</td>
-      <td>0.7328</td>
-      <td>0.4172</td>
-      <td>0.5960</td>
-      <td>-0.0324</td>
-    </tr>
-  </tbody>
-</table>
+<span class="ansi-green-intense-fg ansi-bold">C:\ProgramData\Anaconda2\lib\site-packages\pandas\core\internals.pyc</span> in <span class="ansi-cyan-fg">create_block_manager_from_blocks</span><span class="ansi-blue-intense-fg ansi-bold">(blocks, axes)</span>
+<span class="ansi-green-fg">   4301</span>         blocks <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span>getattr<span class="ansi-yellow-intense-fg ansi-bold">(</span>b<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;values&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> b<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-green-intense-fg ansi-bold">for</span> b <span class="ansi-green-intense-fg ansi-bold">in</span> blocks<span class="ansi-yellow-intense-fg ansi-bold">]</span>
+<span class="ansi-green-fg">   4302</span>         tot_items <span class="ansi-yellow-intense-fg ansi-bold">=</span> sum<span class="ansi-yellow-intense-fg ansi-bold">(</span>b<span class="ansi-yellow-intense-fg ansi-bold">.</span>shape<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-green-intense-fg ansi-bold">for</span> b <span class="ansi-green-intense-fg ansi-bold">in</span> blocks<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 4303</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>construction_error<span class="ansi-yellow-intense-fg ansi-bold">(</span>tot_items<span class="ansi-yellow-intense-fg ansi-bold">,</span> blocks<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>shape<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">:</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> axes<span class="ansi-yellow-intense-fg ansi-bold">,</span> e<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   4304</span> 
+<span class="ansi-green-fg">   4305</span> 
+
+<span class="ansi-green-intense-fg ansi-bold">C:\ProgramData\Anaconda2\lib\site-packages\pandas\core\internals.pyc</span> in <span class="ansi-cyan-fg">construction_error</span><span class="ansi-blue-intense-fg ansi-bold">(tot_items, block_shape, axes, e)</span>
+<span class="ansi-green-fg">   4278</span>         <span class="ansi-green-intense-fg ansi-bold">raise</span> ValueError<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;Empty data passed with indices specified.&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   4279</span>     raise ValueError(&#34;Shape of passed values is {0}, indices imply {1}&#34;.format(
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 4280</span><span class="ansi-yellow-intense-fg ansi-bold">         passed, implied))
+</span><span class="ansi-green-fg">   4281</span> 
+<span class="ansi-green-fg">   4282</span> 
+
+<span class="ansi-red-intense-fg ansi-bold">ValueError</span>: Shape of passed values is (2, 3), indices imply (6, 3)</pre>
 </div>
-</div>
-
 </div>
 
 </div>
@@ -20240,7 +20217,7 @@ JElSh4FJkiRJkjoMTJIkSZLUYWCSJEmSpI7/B/+dfciLMip2AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO：通过在good data上进行PCA，将其转换成两个维度</span>
@@ -20272,7 +20249,7 @@ JElSh4FJkiRJkjoMTJIkSZLUYWCSJEmSpI7/B/+dfciLMip2AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># 展示经过两个维度的PCA转换之后的样本log-data</span>
@@ -20355,7 +20332,7 @@ JElSh4FJkiRJkjoMTJIkSZLUYWCSJEmSpI7/B/+dfciLMip2AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Create a biplot</span>
@@ -20372,13 +20349,13 @@ JElSh4FJkiRJkjoMTJIkSZLUYWCSJEmSpI7/B/+dfciLMip2AAAAAElFTkSuQmCC
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[58]:</div>
+<div class="prompt output_prompt">Out[67]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xe94a550&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xf95bf98&gt;</pre>
 </div>
 
 </div>
@@ -21525,7 +21502,7 @@ GMM是软分类,相比K-Means得到的结果不是一个确定的类别标签而
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
@@ -21612,7 +21589,7 @@ GMM是软分类,相比K-Means得到的结果不是一个确定的类别标签而
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># 从已有的实现中展示聚类的结果</span>
@@ -22280,7 +22257,7 @@ QNf5P4jzvHnl6RBjAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO：反向转换中心点</span>
@@ -22515,7 +22492,7 @@ QNf5P4jzvHnl6RBjAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># 显示预测结果</span>
@@ -22601,7 +22578,7 @@ A/B测试是把对象分成两组,一组使用A方案,一组使用B方案,然后
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
@@ -22674,7 +22651,7 @@ A/B测试是把对象分成两组,一组使用A方案,一组使用B方案,然后
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># 根据‘Channel‘数据显示聚类的结果</span>
